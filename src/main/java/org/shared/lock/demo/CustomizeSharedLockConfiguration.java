@@ -1,10 +1,9 @@
 package org.shared.lock.demo;
 
-import net.madtiger.shared.lock.CuratorLockClient;
-import net.madtiger.shared.lock.ISharedLock;
-import net.madtiger.shared.lock.ZookeeperLockService;
+import net.madtiger.lock.provider.ISharedLockProvider;
+import net.madtiger.lock.zk.CuratorLockClient;
+import net.madtiger.lock.zk.ZookeeperLockProvider;
 import org.apache.curator.framework.CuratorFramework;
-import org.apache.zookeeper.ZooKeeper;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -30,8 +29,8 @@ public class CustomizeSharedLockConfiguration {
    * @return
    */
   @Bean
-  public ISharedLock zkSharedLock(CuratorFramework curatorFramework){
-    return new ZookeeperLockService(new CuratorLockClient(curatorFramework));
+  public ISharedLockProvider zkSharedLock(CuratorFramework curatorFramework){
+    return new ZookeeperLockProvider(new CuratorLockClient(curatorFramework));
   }
 
 
