@@ -77,7 +77,7 @@ public class DemoController {
   @GetMapping("/try-rollback")
   public Flux<String> doRollback() throws Throwable {
     // 来一个基本模式
-    ISharedLock lock = SharedLockBuilder.builder(LOCK_KEY).providerConfigurer(ZookeeperConfigurer.builder().namespace("/shared")).build();
+    ISharedLock lock = SharedLockBuilder.builder(LOCK_KEY).providerConfigurer(ZookeeperConfigurer.builder().namespace("/shared").build()).build();
     Flux<String> result;
     try{
       // 尝试获取所并判断是否锁定成功
